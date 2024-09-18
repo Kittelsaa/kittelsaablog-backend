@@ -12,14 +12,17 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000' /* , 'https://kittelsaa.com' */],
+    origin: [
+        'http://localhost:3000'
+        /* 'https://your-frontend-domain.com' */
+    ],
 }));
+
 const mongoose = require('mongoose');
 const secret = process.env.JWT_SECRET || 'qeoytvgjsi729ehw38he8&^jshgifv**kkart13r';
 mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://kittelsaany:jfpmNPJoztNB7IVQ@cluster0.a0rlg.mongodb.net/');
 app.use(express.json());
 app.use(cookieParser());
-const { TbArrowWaveRightDown } = require('react-icons/tb');
 app.use('/uploads', express.static('uploads'));
 
 
