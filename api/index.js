@@ -12,10 +12,11 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000'], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 
 const mongoose = require('mongoose');
@@ -48,13 +49,15 @@ app.post('/login', async (req, res) => {
     const userDoc = await User.findOne({ username });
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if (passOk) {
+        
         jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
             if (err) throw err;
-            res.cookie('token', token).json({
+            res.cookie('token', token, { httpOnly: true, sameSite: 'None', secure: true }).json({
                 id: userDoc._id,
                 username,
             });
         });
+        
     } else {
         res.status(400).json('Wrong credentials');
     }
