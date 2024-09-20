@@ -12,11 +12,11 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 app.use(cors({
     credentials: true,
-    origin: [
-        'http://localhost:3000'
-        /* 'https://your-frontend-domain.com' */
-    ],
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 const mongoose = require('mongoose');
 const secret = process.env.JWT_SECRET || 'qeoytvgjsi729ehw38he8&^jshgifv**kkart13r';
