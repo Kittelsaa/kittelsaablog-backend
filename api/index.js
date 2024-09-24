@@ -12,7 +12,7 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000'], 
+    origin: ['http://localhost:3000', 'http://localhost:3001'], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
